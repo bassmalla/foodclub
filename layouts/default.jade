@@ -1,56 +1,55 @@
 doctype html
 html
   head
-    block head
-      title #{title}
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet', href='/layouts/core.min.css?#{cacheBreaker}')
-    block neck
+    title Landing Page - Start Bootstrap Theme
+    meta(charset="utf-8")
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    link(href='css/landing-page.css', rel='stylesheet')  
+    link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic', rel='stylesheet', type='text/css')
+
   body
-    div.navbar.navbar-default.navbar-fixed-top
-      div.container
-        div.navbar-header
-          a.navbar-brand(href='/')
-            img.navbar-logo(src='/media/logo-symbol-64x64.png', alt='Logo')
-            span.navbar-brand-label #{projectName}
-          button.navbar-toggle.collapsed(data-toggle='collapse', data-target='.my-navbar-collapse')
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-        div.navbar-collapse.my-navbar-collapse.collapse
-          ul.nav.navbar-nav
-            li: a(href='/') Home
-            li: a(href='/about/') About
-            li: a(href='/signup/') Sign Up
-            li: a(href='/contact/') Contact
-          ul.nav.navbar-nav.navbar-right
-            if user && user.username
-              li: a(href='#{user.defaultReturnUrl}')
-                i.fa.fa-user
-                |  #{user.username}
-            else
-              li: a(href='/login/')
-                i.fa.fa-user
-                |  Sign In
+    nav.navbar.navbar-default.navbar-fixed-top.topnav(role='navigation')
+      .container.topnav
+          .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand.topnav(href='/') Personal Blog
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href='/about') About
+              li
+                a(href='#services') Services
+              li
+                a(href='#contact') Contact
 
-    div.page
-      div.container
-        block body
+    block content
 
-    div.footer
-      div.container
-        span.copyright.pull-right
-          |&#169; #{copyrightYear} #{copyrightName}
-        ul.links
-          li: a(href='/') Home
-          li: a(href='/contact/') Contact
-        div.clearfix
+    footer
+      .container
+        .row
+          .col-lg-12
+            ul.list-inline
+              li
+                a(href='#') Home
+              li.footer-menu-divider &sdot;
+              li
+                a(href='/about') About
+              li.footer-menu-divider &sdot;
+              li
+                a(href='#services') Services
+              li.footer-menu-divider &sdot;
+              li
+                a(href='#contact') Contact
+            p.copyright.text-muted.small Copyright &copy; Your Company 2014. AlRightReserved
 
-    div.ajax-spinner
-      img(src='/media/ajax-pulse.gif', alt='Loading')
-
-    //if lte IE 9
-      script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
-    script(src='/layouts/core.min.js?#{cacheBreaker}')
-
-    block feet
+    script(src='js/jquery.js')
+    script(src='js/bootstrap.min.js')
