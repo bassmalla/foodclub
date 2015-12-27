@@ -1,7 +1,9 @@
 doctype html
 html
   head
-    title Landing Page - Start Bootstrap Theme
+    block head
+      title Landing Page - Start Bootstrap Theme
+
     meta(charset="utf-8")
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
@@ -12,6 +14,7 @@ html
     link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
     link(href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic', rel='stylesheet', type='text/css')
 
+    block neck
   body
     nav.navbar.navbar-default.navbar-fixed-top.topnav(role='navigation')
       .container.topnav
@@ -31,7 +34,7 @@ html
               li
                 a(href='#contact') Contact
 
-    block content
+    block body
 
     footer
       .container
@@ -50,6 +53,8 @@ html
               li
                 a(href='#contact') Contact
             p.copyright.text-muted.small Copyright &copy; Your Company 2014. AlRightReserved
+
+    block feet
 
     script(src='js/jquery.js')
     script(src='js/bootstrap.min.js')
