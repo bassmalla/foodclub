@@ -1,5 +1,7 @@
 'use strict';
 
+var db = [];
+
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -170,6 +172,30 @@ exports = module.exports = function(app, passport) {
   app.get('/account/settings/tumblr/', passport.authenticate('tumblr', { callbackURL: '/account/settings/tumblr/callback/' }));
   app.get('/account/settings/tumblr/callback/', require('./views/account/settings/index').connectTumblr);
   app.get('/account/settings/tumblr/disconnect/', require('./views/account/settings/index').disconnectTumblr);
+
+  /* REST APIs */
+  app.post('/1/post', function(req, res, next) {
+    var title = req.query.title;
+    var message = req.query.message;
+
+    // 使用物件表示
+    var article = {
+      title: title,
+      message: message
+    };
+
+    // (TBD) 存放至全域陣列
+    db.push(article);
+
+    //
+    res.json({
+      status: "OK"
+    });
+  });
+
+  app.get('/1/post', function(req, res, next) {
+    res.json(db);
+  });
 
   //route not found
   app.all('*', require('./views/http/index').http404);
