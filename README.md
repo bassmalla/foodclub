@@ -1,5 +1,7 @@
 # Drywall
 
+[![Join the chat at https://gitter.im/jollen/foodclub](https://badges.gitter.im/jollen/foodclub.svg)](https://gitter.im/jollen/foodclub?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A website and user system starter. Implemented with Express and Backbone.
 
 [![Dependency Status](https://david-dm.org/jedireza/drywall.svg?theme=shields.io)](https://david-dm.org/jedireza/drywall)
