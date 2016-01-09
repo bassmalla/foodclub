@@ -1,6 +1,6 @@
 'use strict';
 
-var db = [];
+var cors = require('cors');
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -174,7 +174,7 @@ exports = module.exports = function(app, passport) {
   app.get('/account/settings/tumblr/disconnect/', require('./views/account/settings/index').disconnectTumblr);
 
   /* REST APIs */
-  app.get('/1/post', require('./views/api/post').readPost);
+  app.get('/1/post', cors(), require('./views/api/post').readPost);
   app.get('/1/post/:id', require('./views/api/post').readPostById);
   app.get('/1/post/subject/:subject', require('./views/api/post').readPostBySubject);
   app.post('/1/post', require('./views/api/post').createPost);
