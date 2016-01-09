@@ -1,6 +1,24 @@
 'use strict';
 
 exports.readPost = function(req, res, next) {
+  var workflow = req.app.utility.workflow(req, res);
+
+  workflow.on('validate', function() {
+    workflow.emit('read');
+  });   
+
+  workflow.on('read', function() {
+    req.app.db.models.Post.find({}, function(err, posts) {
+      if (err) {
+        return workflow.emit('exception', err);
+      }
+
+      workflow.outcome.posts = posts;
+      workflow.emit('response');
+    });
+  });
+
+  return workflow.emit('validate');
 };
 
 exports.createPost = function(req, res, next) {
