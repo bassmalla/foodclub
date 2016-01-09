@@ -175,12 +175,12 @@ exports = module.exports = function(app, passport) {
 
   /* REST APIs */
   app.get('/1/post', cors(), require('./views/api/post').readPost);
-  app.get('/1/post/:id', require('./views/api/post').readPostById);
-  app.get('/1/post/subject/:subject', require('./views/api/post').readPostBySubject);
-  app.post('/1/post', require('./views/api/post').createPost);
-  app.put('/1/post', require('./views/api/post').updatePost);
-  app.put('/1/post/:subject/publish', require('./views/api/post').publish);
-  app.put('/1/post/:subject/unpublish', require('./views/api/post').unpublish);
+  app.get('/1/post/:id', cors(), require('./views/api/post').readPostById);
+  app.get('/1/post/subject/:subject', cors(), require('./views/api/post').readPostBySubject);
+  app.post('/1/post', cors(), require('./views/api/post').createPost);
+  app.put('/1/post', cors(), require('./views/api/post').updatePost);
+  app.put('/1/post/:subject/publish', cors(), require('./views/api/post').publish);
+  app.put('/1/post/:subject/unpublish', cors(), require('./views/api/post').unpublish);
 
   //route not found
   app.all('*', require('./views/http/index').http404);
