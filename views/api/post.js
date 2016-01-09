@@ -51,7 +51,25 @@ exports.createPost = function(req, res, next) {
 };
 
 exports.readPostById = function(req, res, next) {
+  var workflow = req.app.utility.workflow(req, res);
+  var id = req.params.id;
 
+  workflow.on('validate', function() {
+    workflow.emit('read');
+  });   
+
+  workflow.on('read', function() {
+    req.app.db.models.Post.find({_id: id}, function(err, post) {
+      if (err) {
+        return workflow.emit('exception', err);
+      }
+
+      workflow.outcome.post = post;
+      workflow.emit('response');
+    });
+  });
+
+  return workflow.emit('validate');
 };
 
 exports.readPostBySubject = function(req, res, next) {
