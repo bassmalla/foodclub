@@ -32,7 +32,7 @@ function ensureAccount(req, res, next) {
 
 exports = module.exports = function(app, passport) {
   //front end
-  app.get('/', require('./views/index').init);
+  app.get('/', cors(), require('./views/index').init);
   app.get('/about/', require('./views/about/index').init);
   app.get('/contact/', require('./views/contact/index').init);
   app.post('/contact/', require('./views/contact/index').sendMessage);
@@ -179,6 +179,7 @@ exports = module.exports = function(app, passport) {
   app.get('/1/post/subject/:subject', cors(), require('./views/api/post').readPostBySubject);
   app.post('/1/post', cors(), require('./views/api/post').createPost);
   app.put('/1/post', cors(), require('./views/api/post').updatePost);
+  app.all('/1/post', cors(), require('./views/api/post').createPost);
   app.put('/1/post/:subject/publish', cors(), require('./views/api/post').publish);
   app.put('/1/post/:subject/unpublish', cors(), require('./views/api/post').unpublish);
 
