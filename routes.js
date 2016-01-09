@@ -174,28 +174,13 @@ exports = module.exports = function(app, passport) {
   app.get('/account/settings/tumblr/disconnect/', require('./views/account/settings/index').disconnectTumblr);
 
   /* REST APIs */
-  app.post('/1/post', function(req, res, next) {
-    var title = req.query.title;
-    var message = req.query.message;
-
-    // 使用物件表示
-    var article = {
-      title: title,
-      message: message
-    };
-
-    // (TBD) 存放至全域陣列
-    db.push(article);
-
-    //
-    res.json({
-      status: "OK"
-    });
-  });
-
-  app.get('/1/post', function(req, res, next) {
-    res.json(db);
-  });
+  app.get('/1/post', require('./view/api/post').readPost);
+  app.get('/1/post/:id', require('./view/api/post').readPostById);
+  app.get('/1/post/subject/:subject', require('./view/api/post').readPostBySubject);
+  app.post('/1/post', require('./views/api/post').createPost);
+  app.put('/1/post', require('./view/api/post').updatePost);
+  app.put('/1/post/:subject/publish', require('./view/api/post').publish);
+  app.put('/1/post/:subject/unpublish', require('./view/api/post').unpublish);
 
   //route not found
   app.all('*', require('./views/http/index').http404);
