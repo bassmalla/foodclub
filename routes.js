@@ -183,6 +183,10 @@ exports = module.exports = function(app, passport) {
   app.put('/1/post/:subject/publish', cors(), require('./views/api/post').publish);
   app.put('/1/post/:subject/unpublish', cors(), require('./views/api/post').unpublish);
 
+  /* Weather APIs */
+  app.get('/1/weather', cors(), require('./views/api/weather').read);
+  app.get('/1/weather/:q', cors(), require('./views/api/weather').readByQuery);
+
   //route not found
   app.all('*', require('./views/http/index').http404);
 };
