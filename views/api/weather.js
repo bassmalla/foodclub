@@ -30,16 +30,16 @@ exports.readByQuery = function(req, res, next) {
   });   
 
   workflow.on('read', function() {
-    req.app.db.models.Weather.find({}, function(err, data) {
+    req.app.db.models.Weather.aggregate([
+        { $sort: { "userCreated.time": -1 } },
+        { $limit: 1 }
+      ], function(err, data) {
       if (err) {
         return workflow.emit('exception', err);
       }
 
-      var length = data.length;
-      var data = data[length -1];
-
-      workflow.outcome.coord = data.coord;
-      workflow.outcome.main = data.main;
+      workflow.outcome.coord = data[0].coord;
+      workflow.outcome.main = data[0].main;
 
       workflow.emit('response');
     });

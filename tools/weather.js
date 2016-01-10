@@ -20,7 +20,7 @@ require('../models')(app, mongoose);
 
 // http request
 request
-  ('http://api.openweathermap.org/data/2.5/weather?q=Taipei&APPID=2ab10d1d7c261f5cb373916cc1cf107f'
+  ('http://api.openweathermap.org/data/2.5/weather?q=Paris&APPID=2ab10d1d7c261f5cb373916cc1cf107f'
   , function(error, response, body) {
     console.log(body);
 
