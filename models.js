@@ -15,4 +15,5 @@ exports = module.exports = function(app, mongoose) {
   require('./schema/LoginAttempt')(app, mongoose);
 
   require('./schema/Post')(app, mongoose);
+  require('./schema/Weather')(app, mongoose);
 };

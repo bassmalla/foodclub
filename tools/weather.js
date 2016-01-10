@@ -23,4 +23,27 @@ request
   ('http://api.openweathermap.org/data/2.5/weather?q=Taipei&APPID=2ab10d1d7c261f5cb373916cc1cf107f'
   , function(error, response, body) {
     console.log(body);
+
+    var obj = JSON.parse(body);
+
+    var fieldsToSet = {
+	    coord: {
+	      lon: obj.coord.lon,
+	      lat: obj.coord.lat
+	    },
+	    main: {
+	    	temp: obj.main.temp,
+	    	humidity: obj.main.humidity
+		}
+    };
+    
+    app.db.models.Weather.create(fieldsToSet, function(err, weather) {
+      if (err) {
+      	console.log('... err');
+        return;
+      }
+
+      console.log('... Saved.');
+      console.log(weather);
+    });
 });
