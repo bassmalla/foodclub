@@ -21,7 +21,7 @@ require('../models')(app, mongoose);
 // http request
 var getWeather = function() {
   request
-    ('http://api.openweathermap.org/data/2.5/weather?q=Paris&APPID=2ab10d1d7c261f5cb373916cc1cf107f'
+    ('http://172.20.10.5/1/weather'
     , function(error, response, body) {
       console.log(body);
 
@@ -29,12 +29,12 @@ var getWeather = function() {
 
       var fieldsToSet = {
   	    coord: {
-  	      lon: obj.coord.lon,
-  	      lat: obj.coord.lat
+  	      lon: obj.lon,
+  	      lat: obj.lat
   	    },
   	    main: {
-  	    	temp: obj.main.temp,
-  	    	humidity: obj.main.humidity
+  	    	temp: obj.value,
+  	    	humidity: 0 
   		}
       };
       
@@ -50,4 +50,4 @@ var getWeather = function() {
   });
 };
 
-setInterval(getWeather, 60000);
+setInterval(getWeather, 10000);
