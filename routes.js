@@ -174,12 +174,12 @@ exports = module.exports = function(app, passport) {
   app.get('/account/settings/tumblr/disconnect/', require('./views/account/settings/index').disconnectTumblr);
 
   /* REST APIs */
+  app.options('/1/post', cors());
   app.get('/1/post', cors(), require('./views/api/post').readPost);
   app.get('/1/post/:id', cors(), require('./views/api/post').readPostById);
   app.get('/1/post/subject/:subject', cors(), require('./views/api/post').readPostBySubject);
   app.post('/1/post', cors(), require('./views/api/post').createPost);
   app.put('/1/post', cors(), require('./views/api/post').updatePost);
-  app.all('/1/post', cors(), require('./views/api/post').createPost);
   app.put('/1/post/:subject/publish', cors(), require('./views/api/post').publish);
   app.put('/1/post/:subject/unpublish', cors(), require('./views/api/post').unpublish);
 
