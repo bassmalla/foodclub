@@ -10,7 +10,7 @@ html
     div.navbar.navbar-default.navbar-fixed-top
       div.container
         div.navbar-header
-          a.navbar-brand(href='/')
+          a.navbar-brand(href='/account/')
             img.navbar-logo(src='/media/logo-symbol-64x64.png', alt='Logo')
             span.navbar-brand-label #{projectName}
           button.navbar-toggle.collapsed(data-toggle='collapse', data-target='.my-navbar-collapse')
@@ -19,19 +19,12 @@ html
             span.icon-bar
         div.navbar-collapse.my-navbar-collapse.collapse
           ul.nav.navbar-nav
-            li: a(href='/') Home
-            li: a(href='/about/') About
-            li: a(href='/signup/') Sign Up
-            li: a(href='/contact/') Contact
-          ul.nav.navbar-nav.navbar-right
-            if user && user.username
-              li: a(href='#{user.defaultReturnUrl}')
-                i.fa.fa-user
-                |  #{user.username}
-            else
-              li: a(href='/login/')
-                i.fa.fa-user
-                |  Sign In
+            li: a(href='/account/') My Account
+            li: a(href='/account/settings/') Settings
+          ul.nav.navbar-nav.pull-right
+            li: a(href='/logout/')
+              i.fa.fa-user
+              |  Sign Out
 
     div.page
       div.container
@@ -39,12 +32,13 @@ html
 
     div.footer
       div.container
-        span.copyright.pull-right
-          |&#169; #{copyrightYear} #{copyrightName}
-        ul.links
-          li: a(href='/') Home
-          li: a(href='/contact/') Contact
-        div.clearfix
+        div.inner
+          span.copyright.pull-right
+            |&#169; #{copyrightYear} #{copyrightName}
+          ul.links
+            li: a(href='/') Home
+            li: a(href='/logout/') Sign Out
+          div.clearfix
 
     div.ajax-spinner
       img(src='/media/ajax-pulse.gif', alt='Loading')
