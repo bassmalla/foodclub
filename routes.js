@@ -184,6 +184,7 @@ exports = module.exports = function(app, passport) {
   app.put('/1/post/:subject/unpublish', cors(), require('./views/api/post').unpublish);
 
   /* Weather APIs */
+  app.all('/1/weather*', ensureAuthenticated);
   app.get('/1/weather', cors(), require('./views/api/weather').read);
   app.get('/1/weather/:q', cors(), require('./views/api/weather').readByQuery);
 
